@@ -12,6 +12,16 @@ class invoiceController extends Controller
     public function index()
     {
         //
+        $invoice = invoice::all();
+        return view('invoice', ['invoice'=>$invoice]);
+    }
+
+    public function cetak_pdf()
+    {
+        //
+        $invoice = invoice::all();
+        $pdf = PDF::loadview('invoice',['invoice'=>$invoice]);
+        return $pdf->download('laporan-invoice-pdf');
     }
 
     /**
